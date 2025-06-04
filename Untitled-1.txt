@@ -1,0 +1,8 @@
+docker run -e "ACCEPT_EULA=Y" \
+           -e "SA_PASSWORD=P@ssw0rd" \
+           -e "MSSQL_AGENT_ENABLED=true" \
+           -e "MSSQL_PID=Developer" \
+           -p 1450:1433 \
+           --name sql_server_ssis_docker \
+           -v volumesql:/var/opt/mssql \
+           -d mcr.microsoft.com/mssql/server:2022-latest
