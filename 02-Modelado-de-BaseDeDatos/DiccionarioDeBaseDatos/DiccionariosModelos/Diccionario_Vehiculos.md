@@ -1,11 +1,10 @@
 **Tabla cliente**
 
 
-
 | Campo             | Tipo de Dato | Tamaño | PK  | FK  | Nulo | Único | Restricciones                     | Referencia | Descripción                      |
 |-------------------|-------------|--------|-----|-----|------|-------|-----------------------------------|------------|----------------------------------|
-| CURP              | NVARCHAR    | 18     | Sí  | No  | No   | Sí    | Formato CURP válido               | -          | Identificador único              |
-| Telefono          | NVARCHAR    | 10     | No  | No  | Sí   | No    | Solo números                     | -          | Teléfono del cliente             |
+| CURP              | NCHAR    | 18     | Sí  | No  | No   | Sí    | Formato CURP válido               | -          | Identificador único              |
+| Telefono          | NCHAR    | 10     | No  | No  | Sí   | No    | Solo números                     | -          | Teléfono del cliente             |
 | Nombre            | VARCHAR     | 10     | No  | No  | No   | No    | Solo letras                      | -          | Nombre del cliente               |
 | ApellidoPaterno   | VARCHAR     | 10     | No  | No  | No   | No    | Solo letras                      | -          | Apellido paterno                 |
 | ApellidoMaterno   | NVARCHAR    | 10     | No  | No  | Sí   | No    | Solo letras                      | -          | Apellido materno                 |
