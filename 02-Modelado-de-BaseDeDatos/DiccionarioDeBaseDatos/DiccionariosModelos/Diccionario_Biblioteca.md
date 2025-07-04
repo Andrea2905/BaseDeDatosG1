@@ -1,32 +1,33 @@
-# 📘 Diccionario de Datos – Plantilla Biblioteca
 
-**Libro**
+# Diccionario de Datos - Biblioteca
 
-| Campo         | Tipo de Dato | Tamaño | PK  | FK  | Nulo | Único | Restricciones | Referencia | Descripción |
-|---------------|-------------|--------|-----|-----|------|-------|---------------|------------|-------------|
-| Autor        | NVARCHAR    | 20     | No  | No  | No   | No    | Solo letras   | -          | Autor       |
-| Titulo       | NVARCHAR    | 30     | No  | No  | No   | No    | -             | -          | Título      |
-| CantidadLibro| VARCHAR     | 10     | No  | No  | No   | No    | Solo números  | -          | Cantidad    |
-| NumeroISBN   | VARCHAR     | -      | No  | No  | No   | Sí    | Formato ISBN  | -          | ISBN        |
-| NumLibro     | INT         | -      | Sí  | No  | No   | Sí    | > 0           | -          | ID libro    |
+## Entidad: Libros
 
-**presta**
+| Campo     | Tipo de Dato   | Tamaño     | PK  | FK  | Nulo | Único | Restricciones         | Referencia | Descripción                        |
+|-----------|----------------|------------|-----|-----|------|--------|------------------------|------------|-------------------------------------|
+| numLibro  | int            | -          | Sí  | No  | No   | Sí     | Valor único, no nulo   | -          | Identificador único del libro       |
+| isbn      | int            | -          | No  | No  | No   | Sí     | Valor único            | -          | Código ISBN del libro               |
+| Titulo    | nvarchar       | 50         | No  | No  | No   | No     |                        | -          | Título del libro                    |
+| autor     | nvarchar       | 50         | No  | No  | No   | No     |                        | -          | Autor del libro                     |
+| cantidad  | int            | -          | No  | No  | No   | No     | >= 0                  | -          | Número de ejemplares disponibles    |
 
-| Campo       | Tipo de Dato | Tamaño | PK  | FK  | Nulo | Único | Restricciones | Referencia      | Descripción |
-|-------------|-------------|--------|-----|-----|------|-------|---------------|-----------------|-------------|
-| IdPresta    | INT         | -      | Sí  | No  | No   | Sí    | > 0           | -               | ID préstamo |
-| NumLibro    | INT         | -      | No  | Sí  | No   | No    | > 0           | Libro(NumLibro) | Libro       |
-| NumLector   | INT         | -      | No  | Sí  | No   | No    | > 0           | LECTOR(NumLector) | Lector     |
-| Titulo      | NVARCHAR    | 30     | No  | No  | No   | No    | -             | -               | Título      |
-| Autor       | NVARCHAR    | 20     | No  | No  | No   | No    | Solo letras   | -               | Autor       |
-| NombreLector| NVARCHAR    | 20     | No  | No  | No   | No    | Solo letras   | -               | Nombre lector |
+---
 
-**lector**
+## Entidad: Lector
 
-| Campo           | Tipo de Dato | Tamaño | PK  | FK  | Nulo | Único | Restricciones | Referencia | Descripción |
-|-----------------|-------------|--------|-----|-----|------|-------|---------------|------------|-------------|
-| NumLector       | INT         | -      | Sí  | No  | No   | Sí    | > 0           | -          | ID lector   |
-| NumMembresia    | NVARCHAR    | 30     | No  | No  | No   | Sí    | Alfanumérico  | -          | Membresía   |
-| Nombre          | NVARCHAR    | 10     | No  | No  | No   | No    | Solo letras   | -          | Nombre      |
-| ApellidoPaterno | NVARCHAR    | 10     | No  | No  | No   | No    | Solo letras   | -          | Apellido paterno |
-| ApellidoMaterno | NVARCHAR    | 10     | No  | No  | Sí   | No    | Solo letras   | -          | Apellido materno |
+| Campo           | Tipo de Dato   | Tamaño     | PK  | FK  | Nulo | Único | Restricciones         | Referencia | Descripción                          |
+|------------------|----------------|------------|-----|-----|------|--------|------------------------|------------|---------------------------------------|
+| numLector        | int            | -          | Sí  | No  | No   | Sí     | Valor único, no nulo   | -          | Identificador único del lector        |
+| nombre           | nvarchar       | 50         | No  | No  | No   | No     |                        | -          | Nombre del lector                     |
+| apellidoPaterno  | nvarchar       | 50         | No  | No  | No   | No     |                        | -          | Apellido paterno del lector           |
+| apellidoMaterno  | nvarchar       | 50         | No  | No  | No   | No     |                        | -          | Apellido materno del lector           |
+| numMembresia     | int            | -          | No  | No  | No   | Sí     | Valor único            | -          | Número de membresía del lector        |
+
+---
+
+## Relación: Prestamo
+
+| Campo      | Tipo de Dato   | Tamaño | PK  | FK  | Nulo | Único | Restricciones         | Referencia | Descripción                         |
+|------------|----------------|--------|-----|-----|------|--------|------------------------|------------|--------------------------------------|
+| numLibro   | int            | -      | Sí  | Sí  | No   | No     | Debe existir en Libros | Libros     | Identificador del libro prestado     |
+| numLector  | int            | -      | Sí  | Sí  | No   | No     | Debe existir en Lector | Lector     | Identificador del lector que presta  |
